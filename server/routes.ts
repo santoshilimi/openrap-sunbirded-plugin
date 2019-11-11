@@ -593,7 +593,7 @@ export class Router {
     );
 
     app.use(
-      "/contentPlayer/preview",
+      "/contentPlayer/preview/*",
       proxy(proxyUrl, {
         proxyReqPathResolver: function(req) {
           logger.debug(
