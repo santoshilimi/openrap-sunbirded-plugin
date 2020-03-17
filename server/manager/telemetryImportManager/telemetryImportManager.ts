@@ -25,6 +25,7 @@ export class TelemetryImportManager {
 
   public async add(paths: string[]): Promise<string[]> {
     paths = await this.getUnregisteredPaths(paths);
+    logger.info("Unregistered telemetry import paths:", paths);
     if (!paths || !paths.length) {
       throw {
         errCode: "TELEMETRY_IMPORT_PATH_ADDED_ALREADY",
