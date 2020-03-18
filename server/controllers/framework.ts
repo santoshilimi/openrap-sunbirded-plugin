@@ -11,9 +11,8 @@ import Response from "./../utils/response";
 import { ClassLogger } from "@project-sunbird/logger/decorator";
 
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["insert", "get" ],
 })
 export class Framework {
   @Inject

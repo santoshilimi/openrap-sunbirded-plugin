@@ -17,10 +17,9 @@ import HardDiskInfo from "../../utils/hardDiskInfo";
 
 import { ClassLogger } from "@project-sunbird/logger/decorator";
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["initialize", "update", "download", "pause", "resume", "cancel", "retry",
-   "getContentChildNodeDetailsFromApi", "checkDiskSpaceAvailability", "getContentChildNodeDetailsFromDb", "getAddedAndUpdatedContents", "getDeletedContents"],
+
 })
 @Singleton
 export class ContentDownloadManager {

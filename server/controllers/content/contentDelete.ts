@@ -13,9 +13,8 @@ import { IContentDelete, IDeletePath } from "./IContent";
 import { ClassLogger } from "@project-sunbird/logger/decorator";
 
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["delete", "add", "getContentsToDelete", "getContentsToDelete", "getResources"],
 })
 export default class ContentDelete {
     @Inject

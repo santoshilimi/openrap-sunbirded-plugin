@@ -13,12 +13,13 @@ import TelemetryHelper from "../../helper/telemetryHelper";
 
 import { ClassLogger } from "@project-sunbird/logger/decorator";
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["initialize", "getDeviceId", "status", "start", "extractEcar", "processContents", "saveContentsToDb",
-   "handleChildProcessMessage", "handleUnexpectedChildProcessExit", "handleChildProcessError", "getContentsFromDB", "handleKillSignal",
-   "cleanUpAfterErrorOrCancel", "cancel", "pause", "saveDataFromWorker", "constructShareEvent" , "copyEcar",
-    "handleWorkerCloseEvents", "createHierarchy"],
+
+})
+@ClassLogger({
+  logLevel: "debug",
+  logTime: false
 })
 export class ImportContent implements ITaskExecuter {
   private deviceId: string;

@@ -8,9 +8,8 @@ import { manifest } from "../../manifest";
 import { ClassLogger } from "@project-sunbird/logger/decorator";
 
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["checkPath", "next", "pushToQueue", "status", "start"],
 })
 export class ContentDeleteHelper implements ITaskExecuter {
   public static taskType = "DELETE";

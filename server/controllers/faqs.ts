@@ -13,9 +13,8 @@ const FAQ_BLOB_URL = `${process.env.FAQ_BLOB_URL}`;
 import { ClassLogger } from "@project-sunbird/logger/decorator";
 
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["insert", "read" , "fetchOfflineFaqs", "fetchOnlineFaqs", "addToDb"],
 })
 export class Faqs {
 

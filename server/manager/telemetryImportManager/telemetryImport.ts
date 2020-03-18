@@ -12,9 +12,8 @@ import { NetworkQueue } from "OpenRAP/dist/services/queue";
 
 import { ClassLogger} from "@project-sunbird/logger/decorator";
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["getDeviceId", "status" , "saveDataFromWorker", "updateProgress", "saveToDB", "parseFile", "start", "handleChildProcessMessage", "handleWorkerCloseEvents", "handleUnexpectedChildProcessExit", "handleChildProcessError"],
 })
 export class ImportTelemetry implements ITaskExecuter {
   public static taskType = "TELEMETRY_IMPORT";

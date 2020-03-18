@@ -12,9 +12,8 @@ import Response from "./../utils/response";
 import { ClassLogger } from "@project-sunbird/logger/decorator";
 
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["addEvents", "getInfo", "getTelemetrySyncSetting", "setTelemetrySyncSetting", "sync", "list", "export", "retryImport", "import"],
 })
 export default class Telemetry {
   @Inject

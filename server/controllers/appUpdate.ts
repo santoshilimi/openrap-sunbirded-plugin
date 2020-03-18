@@ -21,9 +21,9 @@ const systemInfo = {
 };
 
 @ClassLogger({
-    logLevel: "info",
-    logTime: false,
-    logMethods: ["getDeviceId", "getDesktopAppUpdate", "getAppInfo", "checkForUpdate" ],
+    logLevel: "debug",
+    logTime: true,
+    logMethods: ["getDeviceId", "getDesktopAppUpdate", "getAppInfo" ],
   })
 export default class Appupdate {
     private deviceId;

@@ -13,9 +13,8 @@ import { ILocation } from "./ILocation";
 import { ClassLogger } from "@project-sunbird/logger/decorator";
 
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["insert", "search", "proxyToAPI", "insertStatesDataInDB", "updateStateDataInDB", "saveLocation", "get", "constructSearchEdata"],
 })
 export class Location {
     @Inject private databaseSdk: DatabaseSDK;

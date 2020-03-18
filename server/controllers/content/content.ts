@@ -23,11 +23,8 @@ import { ClassLogger } from "@project-sunbird/logger/decorator";
 const INTERVAL_TO_CHECKUPDATE = 1
 
 @ClassLogger({
-  logLevel: "info",
-  logTime: false,
-  logMethods: ["searchInDB", "get", "list" , "search", "getFacets", "import", "pauseImport", "resumeImport", "cancelImport", "retryImport",
-   "export", "getDeviceId", "constructSearchEdata", "constructShareEvent", "convertBufferToJson", "decorateContentWithProperty", "decorateDialCodeContents",
-"isUpdateRequired", "checkForUpdates", "getOfflineContents", "getAllOfflineContents", "isAvailableOffline", "changeContentStatus"],
+  logLevel: "debug",
+  logTime: false
 })
 export default class Content {
     private deviceId: string;

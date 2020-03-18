@@ -10,10 +10,8 @@ const fileSDK = containerAPI.getFileSDKInstance(manifest.id);
 
 import { ClassLogger } from "@project-sunbird/logger/decorator";
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["export", "loadParentCollection", "loadChildNodes", "loadContent" , "validContent", "loadZipContent",
-   "streamZip", "archiveAppend", "readDirectory", "getManifestBuffer"],
 })
 export class ExportContent {
   private contentBaseFolder = fileSDK.getAbsPath("content");

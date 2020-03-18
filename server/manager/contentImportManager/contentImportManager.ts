@@ -14,10 +14,8 @@ const telemetryInstance = containerAPI.getTelemetrySDKInstance().getInstance();
 
 import { ClassLogger } from "@project-sunbird/logger/decorator";
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["initialize", "add", "getUnregisteredEcars", "getEcarSize",
-   "retryImport", "cancelImport", "resumeImport", "pauseImport" ],
 })
 @Singleton
 export class ContentImportManager {

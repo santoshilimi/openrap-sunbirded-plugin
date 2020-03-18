@@ -14,11 +14,8 @@ import TelemetryHelper from "../../helper/telemetryHelper";
 import HardDiskInfo from "../../utils/hardDiskInfo";
 
 @ClassLogger({
-  logLevel: "info",
+  logLevel: "debug",
   logTime: false,
-  logMethods: ["start", "status", "pause", "resume", "cancel", "retry", "getDownloadObserver", "handleDownloadError", "constructShareEvent",
-   "handleDownloadProgress", "handleDownloadComplete" , "extractZipEntry", "extractContent", "saveContentToDb", "createHierarchy",
-    "checkForAllTaskCompletion", "constructShareEvent", "deleteRemovedContent", "checkSpaceAvailability", "loadZipHandler"],
 })
 export class ContentDownloader implements ITaskExecuter {
   public static taskType = "DOWNLOAD";
