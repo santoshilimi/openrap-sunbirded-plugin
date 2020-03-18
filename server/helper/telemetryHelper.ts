@@ -6,7 +6,7 @@ import { ClassLogger } from "@project-sunbird/logger/decorator";
 
 @ClassLogger({
   logLevel: "debug",
-  logTime: false,
+  logTime: true,
 
 })
 export default class TelemetryHelper {

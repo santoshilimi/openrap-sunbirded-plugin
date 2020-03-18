@@ -12,14 +12,10 @@ import { Observer } from "rxjs";
 import TelemetryHelper from "../../helper/telemetryHelper";
 
 import { ClassLogger } from "@project-sunbird/logger/decorator";
-@ClassLogger({
-  logLevel: "debug",
-  logTime: false,
 
-})
 @ClassLogger({
   logLevel: "debug",
-  logTime: false
+  logTime: true,
 })
 export class ImportContent implements ITaskExecuter {
   private deviceId: string;

@@ -15,7 +15,7 @@ import HardDiskInfo from "../../utils/hardDiskInfo";
 
 @ClassLogger({
   logLevel: "debug",
-  logTime: false,
+  logTime: true,
 })
 export class ContentDownloader implements ITaskExecuter {
   public static taskType = "DOWNLOAD";

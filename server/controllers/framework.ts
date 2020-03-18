@@ -12,7 +12,7 @@ import { ClassLogger } from "@project-sunbird/logger/decorator";
 
 @ClassLogger({
   logLevel: "debug",
-  logTime: false,
+  logTime: true,
 })
 export class Framework {
   @Inject

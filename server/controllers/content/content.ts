@@ -24,7 +24,7 @@ const INTERVAL_TO_CHECKUPDATE = 1
 
 @ClassLogger({
   logLevel: "debug",
-  logTime: false
+  logTime: true
 })
 export default class Content {
     private deviceId: string;

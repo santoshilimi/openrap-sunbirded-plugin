@@ -11,7 +11,7 @@ import { ImportTelemetry } from "./telemetryImport";
 import { ClassLogger } from "@project-sunbird/logger/decorator";
 @ClassLogger({
   logLevel: "debug",
-  logTime: false,
+  logTime: true,
 
 })
 @Singleton
