@@ -10,6 +10,7 @@ const SuDSchedulerOptions = {
     timeout: 60000
   }
 };
+
 @Singleton
 export class DownloadSDK {
 
