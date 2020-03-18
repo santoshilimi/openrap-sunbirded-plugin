@@ -10,6 +10,13 @@ import Response from "./../utils/response";
 const FAQS_DB = "faqs";
 const FAQ_BLOB_URL = `${process.env.FAQ_BLOB_URL}`;
 
+import { ClassLogger } from "@project-sunbird/logger/decorator";
+
+@ClassLogger({
+  logLevel: "info",
+  logTime: false,
+  logMethods: ["insert", "read" , "fetchOfflineFaqs", "fetchOnlineFaqs", "addToDb"],
+})
 export class Faqs {
 
   @Inject private databaseSdk: DatabaseSDK;
@@ -38,7 +45,6 @@ export class Faqs {
   }
   public async read(req, res) {
     const language = req.params.language;
-    logger.info(`Got Faqs read request for language:`, req.params.language, `for ReqId: ${req.get("x-msgid")}`);
     const faqs = await this.fetchOnlineFaqs(language, req) || await this.fetchOfflineFaqs(language, req);
     if (faqs) {
       res.send(Response.success("api.faqs.read", { faqs }, req));
@@ -48,7 +54,6 @@ export class Faqs {
     }
   }
   public async fetchOfflineFaqs(language, req): Promise<IFaqsData | undefined > {
-    logger.info(`Getting faqs from db for language:`, language, `for ReqId: ${req.get("x-msgid")}`);
     let faqsData: IFaqsData = await this.databaseSdk.get(FAQS_DB, language).then((doc) => doc.data).catch((err) => {
       logger.error(`Got error while reading Faq from DB for language`, language, `for ReqId: ${req.get("x-msgid")}, error message `, err.message);
       return undefined;
@@ -63,7 +68,6 @@ export class Faqs {
     return faqsData;
   }
   public async fetchOnlineFaqs(language, req): Promise<IFaqsData  | undefined > {
-    logger.info(`Getting faqs from blob for language:`, language, `for ReqId: ${req.get("x-msgid")}`);
     const config = {
       headers: {
           "content-type": "application/json",

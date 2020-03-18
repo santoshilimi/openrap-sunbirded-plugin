@@ -12,6 +12,13 @@ import { ImportContent } from "./contentImport";
 const telemetryEnv = "Content";
 const telemetryInstance = containerAPI.getTelemetrySDKInstance().getInstance();
 
+import { ClassLogger } from "@project-sunbird/logger/decorator";
+@ClassLogger({
+  logLevel: "info",
+  logTime: false,
+  logMethods: ["initialize", "add", "getUnregisteredEcars", "getEcarSize",
+   "retryImport", "cancelImport", "resumeImport", "pauseImport" ],
+})
 @Singleton
 export class ContentImportManager {
   @Inject private dbSDK: DatabaseSDK;
@@ -24,7 +31,6 @@ export class ContentImportManager {
   }
 
   public async add(ecarPaths: string[]): Promise<string[]> {
-    logger.info("add started for ", ecarPaths);
     ecarPaths = await this.getUnregisteredEcars(ecarPaths);
     logger.info("Unregistered Ecars:", ecarPaths);
     if (!ecarPaths || !ecarPaths.length) {
@@ -50,7 +56,6 @@ export class ContentImportManager {
       };
       queueReq.push(insertData);
     }
-    logger.info("content import added to queue", queueReq);
     const ids = await this.systemQueue.add(queueReq);
     // _.forEach(ids, (id, index) => {
     //   this.logSubmitAuditEvent(id, queueReq[index].name, Object.keys(queueReq[index]));
@@ -91,13 +96,11 @@ export class ContentImportManager {
       name: { $in: ecarPaths.map((ecarPath) => path.basename(ecarPath))},
       isActive: true,
     });
-    logger.debug("---registeredJobs--", registeredJobs);
     if (!registeredJobs) {
       return ecarPaths;
     }
     ecarPaths = _.filter(ecarPaths, (ecarPath) => {
       if (_.find(registeredJobs, { ecarSourcePath: ecarPath })) {
-        logger.info("skipping import for ", ecarPath, " as its already registered");
         return false;
       } else {
         return true;

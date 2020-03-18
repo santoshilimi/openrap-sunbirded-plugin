@@ -12,7 +12,7 @@ import { ClassLogger } from "@project-sunbird/logger/decorator";
 @ClassLogger({
   logLevel: "info",
   logTime: false,
-  logMethods: ["add", "getUnregisteredPaths"],
+  logMethods: ["add", "getUnregisteredPaths", "initialize", "retryImport", "getFileSize", "findPath"],
 })
 @Singleton
 export class TelemetryImportManager {

@@ -10,6 +10,13 @@ import Response from "../../utils/response";
 import { ContentDeleteHelper } from "./contentDeleteHelper";
 import { IContentDelete, IDeletePath } from "./IContent";
 
+import { ClassLogger } from "@project-sunbird/logger/decorator";
+
+@ClassLogger({
+  logLevel: "info",
+  logTime: false,
+  logMethods: ["delete", "add", "getContentsToDelete", "getContentsToDelete", "getResources"],
+})
 export default class ContentDelete {
     @Inject
     private databaseSdk: DatabaseSDK;
@@ -22,7 +29,6 @@ export default class ContentDelete {
 
     public async delete(req, res) {
         const reqId = req.headers["X-msgid"];
-        logger.debug(`${reqId}: Delete method is called`);
         const contentIDS: string[] = _.get(req.body, "request.contents");
         if (!contentIDS) {
             logger.error(`${reqId}: Error: content Ids not found`);
@@ -62,7 +68,6 @@ export default class ContentDelete {
     }
 
     public async add(contentDeletePaths: string[], name): Promise<string[]> {
-        logger.info("add started for ", contentDeletePaths);
         const insertData: SystemQueueReq = {
             type: ContentDeleteHelper.taskType,
             name,
@@ -75,7 +80,6 @@ export default class ContentDelete {
     }
 
     public async getContentsToDelete(contentsToDelete: IContentDelete[]): Promise <IContentDelete[]> {
-        logger.debug(`getContentsToDelete() is called`);
         const deleteContents: IContentDelete[] = [];
         for (const content of contentsToDelete) {
             content.desktopAppMetadata.isAvailable = false;
@@ -92,7 +96,6 @@ export default class ContentDelete {
     }
 
     public async getResources(content: {}): Promise<object[]> {
-        logger.debug(`getResources() is called`);
         const resourceIds: string[] = [];
         const model = new TreeModel();
         let treeModel;

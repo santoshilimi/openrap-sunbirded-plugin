@@ -10,6 +10,13 @@ import DatabaseSDK from "../sdk/database/index";
 import Response from "./../utils/response";
 import { ILocation } from "./ILocation";
 
+import { ClassLogger } from "@project-sunbird/logger/decorator";
+
+@ClassLogger({
+  logLevel: "info",
+  logTime: false,
+  logMethods: ["insert", "search", "proxyToAPI", "insertStatesDataInDB", "updateStateDataInDB", "saveLocation", "get", "constructSearchEdata"],
+})
 export class Location {
     @Inject private databaseSdk: DatabaseSDK;
     @Inject private telemetryHelper: TelemetryHelper;
@@ -25,7 +32,6 @@ export class Location {
     // Inserting states and districts data from files
 
     public async insert() {
-        logger.debug(`Location insert method is called`);
         try {
             const filesPath = this.fileSDK.getAbsPath(path.join("data", "location", "/"));
             const stateFile = await this.fileSDK.readJSON(filesPath + "state.json");
@@ -53,7 +59,6 @@ export class Location {
 
     // Searching location data in DB (if user is in online get online data and insert in db)
     public async search(req, res) {
-        logger.debug(`ReqId = '${req.headers["X-msgid"]}': Location search method is called`);
         const locationType = _.get(req.body, "request.filters.type");
         const parentId = _.get(req.body, "request.filters.parentId");
         logger.debug(`ReqId = '${req.headers["X-msgid"]}': Finding the data from location database`);
@@ -147,7 +152,6 @@ export class Location {
     }
 
     public async insertStatesDataInDB(onlineStates, msgId) {
-        logger.debug(`ReqId =  ${msgId}: insertStatesDataInDB method is called `);
 
         try {
             const bulkInsert = [];
@@ -183,7 +187,6 @@ export class Location {
         }
     }
     public async updateStateDataInDB(district, msgId) {
-        logger.debug(`ReqId =  ${msgId}: updateStateDataInDB method is called `);
 
         try {
             const id = district[0].parentId;
@@ -205,7 +208,6 @@ export class Location {
     }
 
     public async saveLocation(req, res) {
-        logger.debug(`ReqId =  ${req.headers["X-msgid"]}: saveUserLocationData method is called `);
         const locationData = _.get(req.body, "request");
         try {
             if (!_.isObject(locationData.state) || !_.isObject(locationData.city)) {
@@ -234,7 +236,6 @@ export class Location {
     }
 
     public async get(req, res) {
-        logger.debug(`ReqId = "${req.headers["X-msgid"]}": Location get method is called`);
         try {
             logger.info(`ReqId = "${req.headers["X-msgid"]}": Getting location from location DB`);
             const locationData = await this.settingSDK.get("location");

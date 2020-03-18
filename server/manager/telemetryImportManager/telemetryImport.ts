@@ -14,7 +14,7 @@ import { ClassLogger} from "@project-sunbird/logger/decorator";
 @ClassLogger({
   logLevel: "info",
   logTime: false,
-  logMethods: ["start", "handleChildProcessMessage", "handleWorkerCloseEvents"],
+  logMethods: ["getDeviceId", "status" , "saveDataFromWorker", "updateProgress", "saveToDB", "parseFile", "start", "handleChildProcessMessage", "handleWorkerCloseEvents", "handleUnexpectedChildProcessExit", "handleChildProcessError"],
 })
 export class ImportTelemetry implements ITaskExecuter {
   public static taskType = "TELEMETRY_IMPORT";
@@ -139,8 +139,6 @@ export class ImportTelemetry implements ITaskExecuter {
   }
 
   private async handleUnexpectedChildProcessExit(code, signal) {
-    logger.error("Unexpected exit of child process for importId",
-      this.telemetryImportData._id, "with signal and code", code, signal);
     this.skippedFiles = [];
     this.observer.next(this.telemetryImportData);
     this.observer.error({
@@ -150,7 +148,6 @@ export class ImportTelemetry implements ITaskExecuter {
   }
 
   private async handleChildProcessError(err: ErrorObj) {
-    logger.error(this.telemetryImportData._id, "Got error while importing file with importId:", err);
     this.observer.next(this.telemetryImportData);
     this.observer.error({
       code: err.errCode,

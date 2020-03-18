@@ -5,7 +5,13 @@ import { Observer, of } from "rxjs";
 import { retry } from "rxjs/operators";
 import { manifest } from "../../manifest";
 
+import { ClassLogger } from "@project-sunbird/logger/decorator";
 
+@ClassLogger({
+  logLevel: "info",
+  logTime: false,
+  logMethods: ["checkPath", "next", "pushToQueue", "status", "start"],
+})
 export class ContentDeleteHelper implements ITaskExecuter {
   public static taskType = "DELETE";
   public concurrency = 1;
