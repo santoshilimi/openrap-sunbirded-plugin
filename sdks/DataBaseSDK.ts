@@ -5,6 +5,12 @@ import { Singleton } from 'typescript-ioc'
 const PouchDB = require('pouchdb');
 PouchDB.plugin(require('pouchdb-find'));
 import * as path from 'path';
+import { ClassLogger } from '@project-sunbird/logger/decorator';
+
+@ClassLogger({
+    logLevel: "debug",
+    logTime: true
+  })
 @Singleton
 export class DataBaseSDK {
     dbPath: string = process.env.DATABASE_PATH;

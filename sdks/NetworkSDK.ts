@@ -4,6 +4,12 @@ import * as dns from "dns";
 import { TelemetryInstance } from "./../services/telemetry/telemetryInstance";
 import { Inject } from "typescript-ioc";
 const URL = require('url').URL;
+import { ClassLogger } from '@project-sunbird/logger/decorator';
+
+@ClassLogger({
+  logLevel: "debug",
+  logTime: true
+})
 @Singleton
 export default class NetworkSDK {
   private internetStatus;

@@ -8,7 +8,12 @@ export enum QUEUE_TYPE {
     System = "SYSTEM",
     Network = "NETWORK"
 };
+import { ClassLogger } from '@project-sunbird/logger/decorator';
 
+@ClassLogger({
+  logLevel: "debug",
+  logTime: true
+})
 @Singleton
 export class Queue {
 

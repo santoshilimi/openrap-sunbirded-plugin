@@ -7,6 +7,12 @@ import * as os from "os";
 import * as si from "systeminformation";
 import * as _ from "lodash";
 import SettingSDK from "./SettingSDK";
+import { ClassLogger } from '@project-sunbird/logger/decorator';
+
+@ClassLogger({
+  logLevel: "debug",
+  logTime: true
+})
 @Singleton
 export default class SystemSDK {
   private deviceId: string;

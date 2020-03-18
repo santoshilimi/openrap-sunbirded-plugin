@@ -1,6 +1,7 @@
 import { Singleton } from 'typescript-ioc'
 import * as path from 'path';
 const { SuDScheduler } = require("su-downloader3");
+import { ClassLogger } from '@project-sunbird/logger/decorator';
 const SuDSchedulerOptions = {
   autoStart: true,
   maxConcurrentDownloads: 1,
@@ -10,7 +11,10 @@ const SuDSchedulerOptions = {
     timeout: 60000
   }
 };
-
+@ClassLogger({
+    logLevel: "debug",
+    logTime: true
+  })
 @Singleton
 export class DownloadSDK {
 

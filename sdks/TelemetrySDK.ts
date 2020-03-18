@@ -5,6 +5,12 @@ import SettingSDK from './SettingSDK';
 import * as _ from "lodash";
 import { EventManager } from "@project-sunbird/ext-framework-server/managers/EventManager";
 
+import { ClassLogger } from '@project-sunbird/logger/decorator';
+
+@ClassLogger({
+  logLevel: "debug",
+  logTime: true
+})
 export default class TelemetrySDK {
   @Inject private telemetryInstance: TelemetryInstance;
   @Inject private telemetryExport: TelemetryExport;

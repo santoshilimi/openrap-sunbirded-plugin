@@ -18,7 +18,12 @@ import {
 } from "./ITelemetry";
 import * as telemetrySDK from "@project-sunbird/telemetry-sdk";
 import SystemSDK from "./../../sdks/SystemSDK";
+import { ClassLogger } from '@project-sunbird/logger/decorator';
 
+@ClassLogger({
+  logLevel: "debug",
+  logTime: true
+})
 export class TelemetryHelper {
   /**
    *

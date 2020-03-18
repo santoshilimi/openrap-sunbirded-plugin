@@ -15,6 +15,12 @@ const DEFAULT_CONCURRENCY = {
   "openrap-sunbirded-plugin_DELETE": 1,
   default: 1
 }
+import { ClassLogger } from '@project-sunbird/logger/decorator';
+
+@ClassLogger({
+  logLevel: "debug",
+  logTime: true
+})
 @Singleton 
 export class SystemQueue {
   @Inject private dbSDK: DataBaseSDK;

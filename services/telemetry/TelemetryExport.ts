@@ -10,6 +10,12 @@ import SettingSDK from '../../sdks/SettingSDK'
 import SystemSDK from "../../sdks/SystemSDK";
 import { TelemetryHelper } from './telemetry-helper';
 
+import { ClassLogger } from '@project-sunbird/logger/decorator';
+
+@ClassLogger({
+  logLevel: "debug",
+  logTime: true
+})
 @Singleton
 export class TelemetryExport {
     @Inject private databaseSdk: DataBaseSDK;

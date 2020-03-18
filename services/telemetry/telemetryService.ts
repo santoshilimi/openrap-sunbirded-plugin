@@ -2,6 +2,12 @@ import * as _ from "lodash";
 import { TelemetryHelper } from "./telemetry-helper";
 import { Singleton } from "typescript-ioc";
 import { logger } from "@project-sunbird/logger";
+import { ClassLogger } from '@project-sunbird/logger/decorator';
+
+@ClassLogger({
+  logLevel: "debug",
+  logTime: true
+})
 @Singleton
 export class TelemetryService extends TelemetryHelper {
   telemetryBatch = [];

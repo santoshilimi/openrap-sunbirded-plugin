@@ -12,6 +12,7 @@ import { of, throwError } from 'rxjs';
 import SystemSDK from "../../sdks/SystemSDK";
 import { DataBaseSDK } from "../../sdks/DataBaseSDK";
 import SettingSDK from '../../sdks/SettingSDK';
+import { ClassLogger } from '@project-sunbird/logger/decorator';
 
 export enum NETWORK_SUBTYPE {
     Telemetry = "TELEMETRY"
@@ -19,6 +20,12 @@ export enum NETWORK_SUBTYPE {
 export enum PRIORITY { first = 1 };
 const successResponseCode = ['success', 'ok'];
 
+@ClassLogger({
+  logLevel: "debug",
+  logTime: true,
+  logMethods: ["setSubType", "add", "start", "execute", "makeHTTPCall", "getApiKey", "forceSync", "setForceSyncInfo","logTelemetryError", "executeForceSync" ],
+
+})
 @Singleton
 export class NetworkQueue extends Queue {
     @Inject private networkSDK: NetworkSDK;
@@ -184,6 +191,8 @@ export class NetworkQueue extends Queue {
     }
 
     private async getAPIToken(deviceId) {
+        logger.info(`getAPIToken method has been called with  deviceId= ${deviceId}`);
+
         //const apiKey =;
         //let token = Buffer.from(apiKey, 'base64').toString('ascii');
         // if (process.env.APP_BASE_URL_TOKEN && deviceId) {
