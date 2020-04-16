@@ -143,7 +143,8 @@ export default class Content {
             const listData = [];
             _.forEach(dbData, (data) => {
                 const listObj = {
-                    contentId: _.get(data, 'metaData.contentId'),
+                    // tslint:disable-next-line: max-line-length
+                    contentId: _.get(data, 'metaData.contentId') ? _.get(data, 'metaData.contentId') : _.get(data, '_id'),
                     identifier: _.get(data, 'metaData.contentId'),
                     id: _.get(data, '_id'),
                     resourceId: _.get(data, 'metaData.contentId'),

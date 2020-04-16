@@ -30,7 +30,7 @@ export class ContentImportManager {
 
   public async add(ecarPaths: string[]): Promise<string[]> {
     ecarPaths = await this.getUnregisteredEcars(ecarPaths);
-    logger.info("Unregistered Ecars:", ecarPaths);
+    // logger.info("Unregistered Ecars:", ecarPaths);
     if (!ecarPaths || !ecarPaths.length) {
       throw {
         errCode: "ECARS_ADDED_ALREADY",
@@ -98,12 +98,19 @@ export class ContentImportManager {
       return ecarPaths;
     }
     ecarPaths = _.filter(ecarPaths, (ecarPath) => {
-      if (_.find(registeredJobs, { ecarSourcePath: ecarPath })) {
+      if (this.findPath(registeredJobs.docs,  ecarPath )) {
         return false;
       } else {
         return true;
       }
     });
     return ecarPaths;
+  }
+  private findPath(docs, filePath: string) {
+    const exist = _.find(docs, (o: any) => {
+      return o.metaData.sourcePath === filePath;
+    });
+    if (exist) { return true; }
+    return false;
   }
 }
