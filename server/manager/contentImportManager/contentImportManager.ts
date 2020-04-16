@@ -30,7 +30,7 @@ export class ContentImportManager {
 
   public async add(ecarPaths: string[]): Promise<string[]> {
     ecarPaths = await this.getUnregisteredEcars(ecarPaths);
-    // logger.info("Unregistered Ecars:", ecarPaths);
+    logger.info("Unregistered Ecars:", ecarPaths);
     if (!ecarPaths || !ecarPaths.length) {
       throw {
         errCode: "ECARS_ADDED_ALREADY",
